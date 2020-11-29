@@ -6,6 +6,11 @@
 		?>
 		<div class="treehouse-portfolio-container">
 		</div>
+		<script>
+			let userName = "<?php echo $what_is_your_treehouse_name;?>";
 
+			alert(userName);
+
+		</script>
 	<?php } 
 ?>
