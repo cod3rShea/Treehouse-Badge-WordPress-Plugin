@@ -46,6 +46,7 @@
 
 				const gatherBadges = () => {
 					let badges = data.badges;
+					let date  = new Date();
 					console.log(badges);
 					for (i = 0; i < badges.length; i++ ) {
 						let html = `
@@ -58,12 +59,12 @@
 										Achieved
 									</strong>
 									<p>
-										${ badges[i].earned_date}
+										${ date.toLocaleDateString("en-US", badges[i].earned_date) }
 									</p>
 								</div>
 							</div> 
 							<div class="treehouse-portfolio-badge-image">
-								<img src="${badges[i].icon_url}"/> 
+								<img src="${badges[i].icon_url}" loading="lazy" /> 
 							</div> 
 						</div>`;
 
