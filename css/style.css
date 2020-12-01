@@ -1,6 +1,20 @@
+/* css vars */
 :root {
     --main-site-green: #71B43E;
   }
+
+
+.treehouse-portfolio-container {
+    display: flex;
+}
+
+.treehouse-portfolio-user img {
+  border-radius: 50%;
+  width: 150px;
+  max-width: 100%;
+}
+
+/* loading screen */
 
 .loading-screen {
     display: inline-block;
