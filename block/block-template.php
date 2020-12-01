@@ -7,5 +7,13 @@
 		<div class="treehouse-portfolio-container">
 			<div class="loading-screen"><div></div><div></div><div></div></div>
 		</div>
+		<script>
+			jQuery.get( `https://teamtreehouse.com/${userName}.json`, (data) => {
+				console.log('you connected');
+				console.log(data);
+			}).fail(function() {
+				throw Error( "error" );
+			});
+		</script>
 	<?php } 
 ?>
