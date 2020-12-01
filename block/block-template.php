@@ -8,6 +8,10 @@
 				<div class="loading-screen"><div></div><div></div><div></div></div>
 			</div>
 			<div class="treehouse-portfolio-content">
+				<div class="treehouse-portfolio-points"></div>
+				<div class="loading-screen"><div></div><div></div><div></div></div>
+			</div>
+			<div class="treehouse-portfolio-badges">
 				<div class="loading-screen"><div></div><div></div><div></div></div>
 			</div>
 		</div>
@@ -16,29 +20,61 @@
 
 			jQuery.get( `https://teamtreehouse.com/${userName}.json`, (data) => {
 				console.log('you connected');
-				console.log(data);
-
+				// console.log(data.badges);
+				
 				const gatherUser = () => {
 					let userName = data.name;
 					let userImg = data.gravatar_url;
 					let userURL = data.profile_url;
-
 					let html = `<img src="${userImg}"> <a href="${userURL}" target="_BLANK"><h2> ${userName}</h2></a>`;
+
 					jQuery(".treehouse-portfolio-user").append(html);
 				}
 
 				const gatherPoints = () => {
 					const treeHousePoints = data.points;
-					console.log(treeHousePoints[1]);
+					let i = 0;
 					for (const [key, value] of Object.entries(treeHousePoints).sort(([,a],[,b]) => b-a)) {
-							let html = `<div class="point-portfolio-container"> ${key} ${value} </div>`;
-							jQuery(".treehouse-portfolio-content").append(html);
+						let html = `<div class="point-portfolio-container"> ${key} ${value} </div>`;
+						if (i < 6) {
+							jQuery(".treehouse-portfolio-points").append(html);
+						}
+						i++;
+					}
+				
+				}
+
+				const gatherBadges = () => {
+					let badges = data.badges;
+					console.log(badges);
+					for (i = 0; i < badges.length; i++ ) {
+						let html = `
+						<div class="treehouse-portfolio-badge">
+							<div class="treehouse-portfolio-badge-content">
+								<strong>Achievement</strong>
+								<p>${ badges[i].name }</p>
+								<div>
+									<strong>
+										Achieved
+									</strong>
+									<p>
+										${ badges[i].earned_date}
+									</p>
+								</div>
+							</div> 
+							<div class="treehouse-portfolio-badge-image">
+								<img src="${badges[i].icon_url}"/> 
+							</div> 
+						</div>`;
+
+						jQuery(".treehouse-portfolio-badges").append(html);
 					}
 				}
 
 				jQuery('.loading-screen').remove();
 				gatherUser();
 				gatherPoints();
+				gatherBadges();
 
 			}).fail(function() {
 				throw Error( "error" );

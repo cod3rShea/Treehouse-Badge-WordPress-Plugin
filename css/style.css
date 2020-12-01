@@ -53,3 +53,33 @@
     }
   }
   
+
+  .treehouse-portfolio-badges,
+  .treehouse-portfolio-badge {
+    display: flex;
+  }
+
+  .treehouse-portfolio-container {
+    flex-wrap: wrap;
+    
+  }
+
+  .treehouse-portfolio-badges {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-basis: 100%;
+    
+  }
+
+  .treehouse-portfolio-badge {
+    width: 22%;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
+  }
+  
+  .treehouse-portfolio-badge-image {
+    display: flex;
+    align-items: center;
+    background-color: gray;
+    margin-bottom: 20px;
+  }
