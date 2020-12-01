@@ -14,7 +14,7 @@
 				console.log(data);
 				const gatherPoints = () => {
 					const treeHousePoints = data.points;
-					for (const [key, value] of Object.entries(treeHousePoints)) {
+					for (const [key, value] of Object.entries(treeHousePoints).sort(([,a],[,b]) => b-a)) {
 							let html = `<div class="point-portfolio-container"> ${key} ${value} </div>`;
 							jQuery(".treehouse-portfolio-container").append(html);
 					}
