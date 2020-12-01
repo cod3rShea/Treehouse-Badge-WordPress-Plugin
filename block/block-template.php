@@ -5,12 +5,7 @@
 			echo $what_is_your_treehouse_name;
 		?>
 		<div class="treehouse-portfolio-container">
+			<div class="loading-screen"><div></div><div></div><div></div></div>
 		</div>
-		<script>
-			let userName = "<?php echo $what_is_your_treehouse_name;?>";
-
-			alert(userName);
-
-		</script>
 	<?php } 
 ?>
