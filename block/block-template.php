@@ -35,20 +35,29 @@
 					const treeHousePoints = data.points;
 					let i = 0;
 					for (const [key, value] of Object.entries(treeHousePoints).sort(([,a],[,b]) => b-a)) {
-						let html = `<div class="point-portfolio-container"> ${key} ${value} </div>`;
-						if (i < 6) {
-							jQuery(".treehouse-portfolio-points").append(html);
+						let html;
+						
+						if (i < 1 ) {
+							html = `<div class="point-portfolio-container"> <h2> ${key} Points ${value} </h2></div>`;
+						} else {
+							html = `<div class="point-portfolio-container"> ${key} ${value} </div>`;
 						}
+
+						jQuery(".treehouse-portfolio-points").append(html);
+						
 						i++;
 					}
-				
 				}
 
 				const gatherBadges = () => {
 					let badges = data.badges.reverse();
-					let date  = new Date();
+
+
 					console.log(badges);
 					for (i = 0; i < badges.length; i++ ) {
+						let date = new Date(badges[i].earned_date);
+						let newDate = date.toLocaleDateString();
+						
 						let html = `
 						<div class="treehouse-portfolio-badge">
 							<div class="treehouse-portfolio-badge-content">
@@ -59,7 +68,7 @@
 										Achieved
 									</strong>
 									<p>
-										${ date.toLocaleDateString("en-US", badges[i].earned_date) }
+										${ newDate }
 									</p>
 								</div>
 							</div> 

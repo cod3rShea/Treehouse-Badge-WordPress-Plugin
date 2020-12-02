@@ -14,92 +14,130 @@
   max-width: 100%;
 }
 
+.treehouse-portfolio-user a {
+  text-transform: capitalize;
+}
+
+  
+.treehouse-portfolio-user {
+    width: 25%;
+}
+.treehouse-portfolio-content {
+  width: 75%;
+}
+
+  .treehouse-portfolio-points {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.point-portfolio-container {
+  width: 25%;
+}
+
+.point-portfolio-container:first-child {
+  width: 100%;
+}
+
+.point-portfolio-container h2{
+  text-transform: capitalize;
+}
+
+.treehouse-portfolio-badges,
+.treehouse-portfolio-badge {
+  display: flex;
+}
+
+.treehouse-portfolio-container {
+  flex-wrap: wrap;
+  
+}
+
+.treehouse-portfolio-badges {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-basis: 100%;
+  margin-top: 40px; 
+}
+.treehouse-portfolio-badge {
+  justify-content: space-between;
+  width: 30%;
+  margin-bottom: 20px;
+  border: 1px solid #71B43E;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 900px){
+  .treehouse-portfolio-badge {
+    width: 47%;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .treehouse-portfolio-badge {
+    width: 100%;
+  }
+}
+
+.treehouse-portfolio-badge-content {
+  width: 70%;
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.treehouse-portfolio-badge-content p {
+  margin: 0;
+}
+
+.treehouse-portfolio-badge-content div {
+  margin-top: 15px;
+}
+
+.treehouse-portfolio-badge-image {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  background-color: #71B43E;
+  padding: 10px;
+  border-radius: 0 19px 19px 0;
+}
+
+
 /* loading screen */
 
 .loading-screen {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loading-screen div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: var(--main-site-green);
+  animation: loading-screen 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.loading-screen div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.loading-screen div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.loading-screen div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes loading-screen {
+  0% {
+    top: 8px;
+    height: 64px;
   }
-  .loading-screen div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 16px;
-    background: var(--main-site-green);
-    animation: loading-screen 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  50%, 100% {
+    top: 24px;
+    height: 32px;
   }
-  .loading-screen div:nth-child(1) {
-    left: 8px;
-    animation-delay: -0.24s;
-  }
-  .loading-screen div:nth-child(2) {
-    left: 32px;
-    animation-delay: -0.12s;
-  }
-  .loading-screen div:nth-child(3) {
-    left: 56px;
-    animation-delay: 0;
-  }
-  @keyframes loading-screen {
-    0% {
-      top: 8px;
-      height: 64px;
-    }
-    50%, 100% {
-      top: 24px;
-      height: 32px;
-    }
-  }
-  
-
-  .treehouse-portfolio-badges,
-  .treehouse-portfolio-badge {
-    display: flex;
-  }
-
-  .treehouse-portfolio-container {
-    flex-wrap: wrap;
-    
-  }
-
-  .treehouse-portfolio-badges {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex-basis: 100%;
-    
-  }
-  .treehouse-portfolio-badge {
-    justify-content: space-between;
-    width: 30%;
-    margin-bottom: 20px;
-    border: 1px solid #71B43E;
-    border-radius: 20px;
-  }
-
-  @media screen and (max-width: 600px){
-    .treehouse-portfolio-badge {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-  }
-  
-  .treehouse-portfolio-badge-content {
-    width: 70%;
-    padding: 10px;
-  }
-
-  .treehouse-portfolio-badge-image {
-    width: 30%;
-    display: flex;
-    align-items: center;
-    background-color: #71B43E;
-    padding: 10px;
-    border-radius: 0 19px 19px 0;
-  }
-
-
-  .treehouse-portfolio-badge-image img {
-
-  }
+}
