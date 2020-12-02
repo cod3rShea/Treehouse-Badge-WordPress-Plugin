@@ -45,7 +45,7 @@
 				}
 
 				const gatherBadges = () => {
-					let badges = data.badges;
+					let badges = data.badges.reverse();
 					let date  = new Date();
 					console.log(badges);
 					for (i = 0; i < badges.length; i++ ) {
