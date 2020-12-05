@@ -41,6 +41,7 @@
 
 .point-portfolio-container h2{
   text-transform: capitalize;
+  margin-top: 0;
 }
 
 .treehouse-portfolio-badges,
@@ -50,6 +51,7 @@
 
 .treehouse-portfolio-container {
   flex-wrap: wrap;
+  margin-top: 30px;
   
 }
 
@@ -85,8 +87,17 @@
   padding-left: 20px;
 }
 
-.treehouse-portfolio-badge-content p {
+.treehouse-portfolio-badge-content p,
+.treehouse-portfolio-badge-content h4 {
   margin: 0;
+}
+
+.treehouse-portfolio-badge-content h3 {
+  margin-bottom: 0;
+}
+
+.treehouse-portfolio-badge-content h4 {
+  font-size: 13px;
 }
 
 .treehouse-portfolio-badge-content div {

@@ -8,7 +8,10 @@
 				<div class="loading-screen"><div></div><div></div><div></div></div>
 			</div>
 			<div class="treehouse-portfolio-content">
-				<div class="treehouse-portfolio-points"></div>
+				<div class="treehouse-portfolio-points">
+					<h2></h2>
+					<ul></ul>
+				</div>
 				<div class="loading-screen"><div></div><div></div><div></div></div>
 			</div>
 			<div class="treehouse-portfolio-badges">
@@ -20,7 +23,6 @@
 
 			jQuery.get( `https://teamtreehouse.com/${userName}.json`, (data) => {
 				console.log('you connected');
-				// console.log(data.badges);
 				
 				const gatherUser = () => {
 					let userName = data.name;
@@ -35,15 +37,16 @@
 					const treeHousePoints = data.points;
 					let i = 0;
 					for (const [key, value] of Object.entries(treeHousePoints).sort(([,a],[,b]) => b-a)) {
-						let html;
-						
+						let header;
+						let list;
+	
 						if (i < 1 ) {
-							html = `<div class="point-portfolio-container"> <h2> ${key} Points ${value} </h2></div>`;
+							header = `<div class="point-portfolio-container"> ${key} Points ${value} </div>`;
 						} else {
-							html = `<div class="point-portfolio-container"> ${key} ${value} </div>`;
+							list = `<li class="point-portfolio-container"> ${key} ${value} </li>`;
 						}
-
-						jQuery(".treehouse-portfolio-points").append(html);
+						jQuery(".treehouse-portfolio-points h2").append(header);
+						jQuery(".treehouse-portfolio-points ul").append(list);
 						
 						i++;
 					}
@@ -51,18 +54,25 @@
 
 				const gatherBadges = () => {
 					let badges = data.badges.reverse();
-
-
-					console.log(badges);
+					// console.log(badges);
 					for (i = 0; i < badges.length; i++ ) {
 						let date = new Date(badges[i].earned_date);
 						let newDate = date.toLocaleDateString();
+						let courseTitle;
 						
+						if (badges[i].courses[0].title !="" || badges[i].courses[0].title != NULL || badges[i].courses[0].title != undefined) {
+							courseTitle = badges[i].courses[0].title;
+							console.log(courseTitle);
+						} else {
+							console.log('test');
+						}
+
 						let html = `
 						<div class="treehouse-portfolio-badge">
 							<div class="treehouse-portfolio-badge-content">
 								<strong>Achievement</strong>
-								<p>${ badges[i].name }</p>
+								<h3>${ badges[i].name }</h3>
+								<h4>${ courseTitle }</h4>
 								<div>
 									<strong>
 										Achieved
