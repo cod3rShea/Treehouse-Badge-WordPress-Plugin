@@ -8,9 +8,9 @@
 				<div class="loading-screen"><div></div><div></div><div></div></div>
 			</div>
 			<div class="treehouse-portfolio-content">
-				<div class="treehouse-portfolio-points">
+				<div class="treehouse-portfolio-points-container">
 					<h2></h2>
-					<ul></ul>
+					<ul class="treehouse-portfolio-points"></ul>
 				</div>
 				<div class="loading-screen"><div></div><div></div><div></div></div>
 			</div>
@@ -19,21 +19,61 @@
 			</div>
 		</div>
 		<script>
+			
 			let userName = "<?php echo $what_is_your_treehouse_name;?>";
+			
+			// ------------------------------------------
+			//  FETCH FUNCTIONS
+			// ------------------------------------------
+			
+			function fetchData (url) {
+				return fetch(url)
+					.then(
+						checkStatus
+					).then(
+						response => response.json()
+					).catch(
+						error => console.log('There was an error', error)
+					);
+			}
 
-			jQuery.get( `https://teamtreehouse.com/${userName}.json`, (data) => {
-				console.log('you connected');
+			
+
+			Promise.all([
+				fetchData(`https://teamtreehouse.com/${userName}.json`)
+			]).then ( data => {
 				
-				const gatherUser = () => {
+				const treehouseJSON = data[0];
+
+				jQuery('.loading-screen').remove();
+
+				gatherUser(treehouseJSON);
+				gatherPoints(treehouseJSON);
+				gatherBadges(treehouseJSON);
+			});
+
+			function checkStatus(response) {
+				if (response.ok) {
+					return Promise.resolve(response);
+				} else {
+					return Promise.reject( new Error(response.statusText) );
+				}
+			}
+
+			// ------------------------------------------
+			//  HELPER FUNCTIONS
+			// ------------------------------------------
+			const gatherUser = (data) => {
+
 					let userName = data.name;
 					let userImg = data.gravatar_url;
 					let userURL = data.profile_url;
-					let html = `<img src="${userImg}"> <a href="${userURL}" target="_BLANK"><h2> ${userName}</h2></a>`;
+					let html = `<img src="${userImg}" loading="lazy"> <a href="${userURL}" target="_BLANK"><h2> ${userName}</h2></a>`;
 
 					jQuery(".treehouse-portfolio-user").append(html);
-				}
+			}
 
-				const gatherPoints = () => {
+			const gatherPoints = (data) => {
 					const treeHousePoints = data.points;
 					let i = 0;
 					for (const [key, value] of Object.entries(treeHousePoints).sort(([,a],[,b]) => b-a)) {
@@ -43,28 +83,28 @@
 						if (i < 1 ) {
 							header = `<div class="point-portfolio-container"> ${key} Points ${value} </div>`;
 						} else {
-							list = `<li class="point-portfolio-container"> ${key} ${value} </li>`;
+							list = `<li> <strong>${key}</strong> <h4>${value}</h4> </li>`;
 						}
-						jQuery(".treehouse-portfolio-points h2").append(header);
-						jQuery(".treehouse-portfolio-points ul").append(list);
+						jQuery(".treehouse-portfolio-points-container h2").append(header);
+						jQuery(".treehouse-portfolio-points-container ul").append(list);
 						
 						i++;
 					}
 				}
 
-				const gatherBadges = () => {
+				const gatherBadges = (data) => {
 					let badges = data.badges.reverse();
-					// console.log(badges);
+
 					for (i = 0; i < badges.length; i++ ) {
 						let date = new Date(badges[i].earned_date);
 						let newDate = date.toLocaleDateString();
 						let courseTitle;
-						
-						if (badges[i].courses[0].title !="" || badges[i].courses[0].title != NULL || badges[i].courses[0].title != undefined) {
+						console.log(data);
+						if (badges[i].courses.length) {
 							courseTitle = badges[i].courses[0].title;
-							console.log(courseTitle);
+							// console.log(courseTitle);
 						} else {
-							console.log('test');
+							courseTitle = "N/A";
 						}
 
 						let html = `
@@ -90,16 +130,6 @@
 						jQuery(".treehouse-portfolio-badges").append(html);
 					}
 				}
-
-				jQuery('.loading-screen').remove();
-				gatherUser();
-				gatherPoints();
-				gatherBadges();
-
-			}).fail(function() {
-				throw Error( "error" );
-			});
-
 		</script>
 	<?php } 
 ?>
