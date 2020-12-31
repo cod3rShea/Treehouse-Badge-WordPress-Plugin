@@ -26,10 +26,29 @@
   width: 75%;
 }
 
+  .treehouse-portfolio-points-container,
   .treehouse-portfolio-points {
     display: flex;
     flex-wrap: wrap;
 }
+
+.treehouse-portfolio-points {
+  margin: 0;
+  padding: 0;
+}
+
+.treehouse-portfolio-points li {
+  width: 21%;
+  margin: 0 2%;
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.treehouse-portfolio-points h4 {
+  font-weight: 400;
+  margin: 0;
+}
+
 
 .point-portfolio-container {
   width: 25%;
@@ -53,6 +72,28 @@
   flex-wrap: wrap;
   margin-top: 30px;
   
+}
+
+
+@media screen and (max-width: 600px) {
+  .treehouse-portfolio-points li {
+    width: 46%;
+    margin: 0 2%;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .treehouse-portfolio-container {
+    flex-direction: column;
+  }
+  .treehouse-portfolio-user {
+    text-align: center;
+  }
+  .treehouse-portfolio-user,
+  .treehouse-portfolio-content {
+    width: 100%;
+  }
 }
 
 .treehouse-portfolio-badges {

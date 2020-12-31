@@ -19,10 +19,12 @@ include( plugin_dir_path( __FILE__ ) . 'acf/acf-fields.php');
 //creates the block template
 include( plugin_dir_path( __FILE__ ) . 'block/block-template.php');
 
+
+
 function add_my_css_and_my_js_files(){
     wp_enqueue_style( 'treehouse-portfolio', plugins_url('/css/style.css', __FILE__), false, '1.0.0', 'all');
 }
-add_action('wp_enqueue_scripts', "add_my_css_and_my_js_files");
+add_action('wp_enqueue_scripts', "add_my_css_and_my_js_files", 14 );
 
 
  ?>
