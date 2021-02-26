@@ -70,7 +70,7 @@ const gatherPoints = (data) => {
     const gatherBadges = (data) => {
         let badges = data.badges.reverse();
 
-        for (i = 0; i < badges.length; i++ ) {
+        for (let i = 0; i < badges.length; i++ ) {
             let date = new Date(badges[i].earned_date);
             let newDate = date.toLocaleDateString();
             let courseTitle;
