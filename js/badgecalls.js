@@ -11,6 +11,7 @@ Promise.all([
     fetchData(`https://teamtreehouse.com/${userName}.json`)
 ]).then(data => {
     const treehouseJSON = data[0];
+    // @ts-expect-error
     jQuery('.loading-screen').remove();
     gatherUser(treehouseJSON);
     gatherPoints(treehouseJSON);
@@ -32,6 +33,7 @@ const gatherUser = (data) => {
     let userImg = data.gravatar_url;
     let userURL = data.profile_url;
     let html = `<img src="${userImg}" loading="lazy"> <a href="${userURL}" target="_BLANK"><h2> ${userName}</h2></a>`;
+    // @ts-expect-error
     jQuery(".treehouse-portfolio-user").append(html);
 };
 const gatherPoints = (data) => {
@@ -46,7 +48,9 @@ const gatherPoints = (data) => {
         else {
             list = `<li> <strong>${key}</strong> <h4>${value}</h4> </li>`;
         }
+        // @ts-expect-error
         jQuery(".treehouse-portfolio-points-container h2").append(header);
+        // @ts-expect-error
         jQuery(".treehouse-portfolio-points-container ul").append(list);
         i++;
     }
@@ -82,6 +86,7 @@ const gatherBadges = (data) => {
                     <img src="${badges[i].icon_url}" loading="lazy" /> 
                 </div> 
             </div>`;
+        // @ts-expect-error
         jQuery(".treehouse-portfolio-badges").append(html);
     }
 };
